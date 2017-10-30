@@ -451,6 +451,7 @@ class Main extends React.Component {
         !hasBraveDragData(event.dataTransfer)) {
         return true
       }
+      console.log('preventing default')
       event.dataTransfer.dropEffect = 'none'
       event.preventDefault()
       return false

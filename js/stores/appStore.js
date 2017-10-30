@@ -185,6 +185,7 @@ const handleAppAction = (action) => {
       // until we have a better way to manage dependencies.
       // tabsReducer must be above dragDropReducer.
       require('../../app/browser/reducers/tabsReducer'),
+      require('../../app/browser/reducers/tabDraggingReducer'),
       require('../../app/browser/reducers/urlBarSuggestionsReducer'),
       require('../../app/browser/reducers/bookmarksReducer'),
       require('../../app/browser/reducers/bookmarkFoldersReducer'),

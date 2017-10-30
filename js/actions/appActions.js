@@ -1143,12 +1143,14 @@ const appActions = {
    * @param {string} dragType - The type of data
    * @param {object} dragData - Data being transfered
    */
-  dragStarted: function (windowId, dragType, dragData) {
+  dragStarted: function (windowId, dragType, dragData, targetRect, originClientX) {
     dispatch({
       actionType: appConstants.APP_DRAG_STARTED,
       windowId,
       dragType,
-      dragData
+      dragData,
+      targetRect,
+      originClientX
     })
   },
 
@@ -1158,6 +1160,61 @@ const appActions = {
   dragEnded: function () {
     dispatch({
       actionType: appConstants.APP_DRAG_ENDED
+    })
+  },
+
+  tabDragStarted: function (originalWindowId, frame, sourceTabId, originClientX, originClientY, originScreenX, originScreenY, tabWidth, tabHeight, relativeXDragStart, relativeYDragStart, originatedFromSingleTabWindow) {
+    dispatch({
+      actionType: appConstants.APP_TAB_DRAG_STARTED,
+      dragSourceData: {
+        originalWindowId,
+        currentWindowId: originalWindowId,
+        sourceTabId,
+        originClientX,
+        originClientY,
+        originScreenX,
+        originScreenY,
+        relativeXDragStart,
+        relativeYDragStart,
+        frame,
+        originatedFromSingleTabWindow
+      }
+    })
+  },
+
+  tabDragCancelled: function () {
+    dispatch({
+      actionType: appConstants.APP_TAB_DRAG_CANCELLED
+    })
+  },
+
+  tabDragComplete: function () {
+    dispatch({
+      actionType: appConstants.APP_TAB_DRAG_COMPLETE
+    })
+  },
+
+  tabDragDetachRequested: function (tabX, tabY) {
+    dispatch({
+      actionType: appConstants.APP_TAB_DRAG_DETACH_REQUESTED,
+      tabX,
+      tabY
+    })
+  },
+
+  tabDragSingleTabMoved: function (tabX, tabY, windowId) {
+    dispatch({
+      actionType: appConstants.APP_TAB_DRAG_SINGLE_TAB_MOVED,
+      tabX,
+      tabY,
+      windowId
+    })
+  },
+
+  tabDragChangeDisplayIndex: function (destinationIndex) {
+    dispatch({
+      actionType: appConstants.APP_TAB_DRAG_CHANGE_DISPLAY_INDEX,
+      destinationIndex
     })
   },
 
